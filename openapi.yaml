@@ -1,0 +1,42 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:8080/api/1.0
+  description: Generated server url
+paths:
+  /vouchers/create:
+    post:
+      tags:
+      - voucher-controller
+      operationId: createVoucher
+      parameters:
+      - name: kodeVoucher
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: ipAddress
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: waktuLogin
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: paket
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+components: {}

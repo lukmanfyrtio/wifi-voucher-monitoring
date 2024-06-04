@@ -1,0 +1,8 @@
+version: 1.0
+endpoints:
+- name: Wifi Voucher Monitoring
+  port: 8080
+  type: REST
+  networkVisibility: Public
+  context: /
+  schemaFilePath: openapi.yaml
