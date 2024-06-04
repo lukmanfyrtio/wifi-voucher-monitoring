@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lukman.wifi.voucer_tracking.model.Voucher;
+import com.lukman.wifi.voucer_tracking.model.VoucherDTO;
 import com.lukman.wifi.voucer_tracking.service.VoucherService;
+
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 @RequestMapping("/vouchers")
@@ -21,13 +24,11 @@ public class VoucherController {
 
     @GetMapping("/create")
     public String createVoucher(
-            @RequestParam("kodeVoucher") String kodeVoucher,
-            @RequestParam("ipAddress") String ipAddress,
-            @RequestParam("waktuLogin") String waktuLoginStr,
-            @RequestParam("paket") String paket) {
+            @RequestBody VoucherDTO voucherDTO) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM/dd/yyyy HH:mm:ss");
         LocalDateTime waktuLogin;
+        String waktuLoginStr=voucherDTO.getWaktuLogin();
         waktuLoginStr = waktuLoginStr.substring(0, 1).toUpperCase() + waktuLoginStr.substring(1);
         try {
             waktuLogin = LocalDateTime.parse(waktuLoginStr, formatter);
@@ -36,10 +37,10 @@ public class VoucherController {
         }
 
         Voucher voucher = new Voucher();
-        voucher.setKodeVoucher(kodeVoucher);
-        voucher.setIpAddress(ipAddress);
+        voucher.setKodeVoucher(voucherDTO.getKodeVoucher());
+        voucher.setIpAddress(voucherDTO.getIpAddress());
         voucher.setWaktuLogin(waktuLogin);
-        voucher.setPaket(paket);
+        voucher.setPaket(voucherDTO.getPaket());
 
         boolean success = voucherService.createVoucher(voucher);
 
