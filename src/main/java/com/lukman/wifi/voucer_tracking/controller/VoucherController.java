@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +19,7 @@ public class VoucherController {
     @Autowired
     private VoucherService voucherService;
 
-    @PostMapping("/create")
+    @GetMapping("/create")
     public String createVoucher(
             @RequestParam("kodeVoucher") String kodeVoucher,
             @RequestParam("ipAddress") String ipAddress,

@@ -7,7 +7,7 @@ servers:
   description: Generated server url
 paths:
   /vouchers/create:
-    post:
+    get:
       tags:
       - voucher-controller
       operationId: createVoucher
